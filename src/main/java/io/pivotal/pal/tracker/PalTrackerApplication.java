@@ -5,6 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import javax.sql.DataSource;
+
 @SpringBootApplication
 public class PalTrackerApplication {
 
@@ -13,10 +15,10 @@ public class PalTrackerApplication {
     }
 
     @Bean
-    public TimeEntryRepository getBeans()
+    public TimeEntryRepository getBeans(DataSource dataSource)
     {
-        MysqlDataSource dataSource = new MysqlDataSource();
-        dataSource.setUrl(System.getenv("SPRING_DATASOURCE_URL"));
+        //MysqlDataSource dataSource = new MysqlDataSource();
+        //dataSource.setUrl(System.getenv("SPRING_DATASOURCE_URL"));
 
         return new JdbcTimeEntryRepository(dataSource);
     }
